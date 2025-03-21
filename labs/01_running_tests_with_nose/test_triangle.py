@@ -39,15 +39,15 @@ class TestAreaOfTriangle(TestCase):
 
     def test_with_boolean(self):
         """ Test that TypeError is raised with boolean types """
-        self.assertRaises(TypeError, area_of_a_triangle, True, 5)   # test booleans
+        self.assertRaises(TypeError, area_of_a_triangle, True, 5)
         self.assertRaises(TypeError, area_of_a_triangle, 2, True)
 
     def test_with_string(self):
         """ Test that TypeError is raised with string types """
-        self.assertRaises(TypeError, area_of_a_triangle, "base", 5) # test strings
+        self.assertRaises(TypeError, area_of_a_triangle, "base", 5)
         self.assertRaises(TypeError, area_of_a_triangle, 2, "height")
 
     def test_with_nulls(self):
         """ Test that TypeError is raised with null types """
-        self.assertRaises(TypeError, area_of_a_triangle, None, 5) # test strings
+        self.assertRaises(TypeError, area_of_a_triangle, None, 5)
         self.assertRaises(TypeError, area_of_a_triangle, 2, None)
