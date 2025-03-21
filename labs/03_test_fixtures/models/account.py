@@ -7,14 +7,13 @@ from models import db
 
 logger = logging.getLogger()
 
-
 class DataValidationError(Exception):
     """Used for an data validation errors when deserializing"""
 
 
 class Account(db.Model):
     """ Class that represents an Account """
-    
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     email = db.Column(db.String(64))
