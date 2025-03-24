@@ -6,20 +6,21 @@ Steps file for Pet.feature
 For information on Waiting until elements are present in the HTML see:
     https://selenium-python.readthedocs.io/waits.html
 """
+from os import getenv
 import requests
 from behave import given
 
-# Load data here
+WAIT_SECONDS = int(getenv('WAIT_SECONDS', '60'))
 
 @given('the following pets')
 def step_impl(context):
     """Refresh all Pets in the database"""
 
     # List all of the pets and delete them one by one
-    response = requests.get(f"{context.base_url}/pets")
+    response = requests.get(f"{context.base_url}/pets", timeout=WAIT_SECONDS)
     assert response.status_code == 200
     for pet in response.json():
-        response = requests.delete(f"{context.base_url}/pets/{pet['id']}")
+        response = requests.delete(f"{context.base_url}/pets/{pet['id']}", timeout=WAIT_SECONDS)
         assert response.status_code == 204
 
     # load the database with new pets
@@ -31,5 +32,5 @@ def step_impl(context):
             "gender": row['gender'],
             "birthday": row['birthday']
         }
-        response = requests.post(f"{context.base_url}/pets", json=payload)
+        response = requests.post(f"{context.base_url}/pets", json=payload, timeout=WAIT_SECONDS)
         assert response.status_code == 201
