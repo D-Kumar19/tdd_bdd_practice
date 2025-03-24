@@ -9,7 +9,6 @@ For information on Waiting until elements are present in the HTML see:
 import requests
 from behave import given
 
-# Load data here
 
 @given('the following pets')
 def step_impl(context):
