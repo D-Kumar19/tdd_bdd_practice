@@ -12,10 +12,11 @@ def before_all(context):
     """ Executed once before all tests """
     context.base_url = BASE_URL
     context.wait_seconds = WAIT_SECONDS
+
     # Instantiate the Firefox WebDriver with GeckoDriver
-    options = webdriver.FirefoxOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument("--headless")
-    context.driver = webdriver.Firefox(options=options)
+    context.driver = webdriver.Chrome(options=options)
     context.driver.implicitly_wait(context.wait_seconds)
 
 def after_all(context):
